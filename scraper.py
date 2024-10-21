@@ -30,7 +30,6 @@ from groq import Groq
 from assets import USER_AGENTS,PRICING,HEADLESS_OPTIONS,SYSTEM_MESSAGE,USER_MESSAGE,LLAMA_MODEL_FULLNAME,GROQ_LLAMA_MODEL_FULLNAME
 load_dotenv()
 
-# Set up the Chrome WebDriver options
 # Get the directory of the current script
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
