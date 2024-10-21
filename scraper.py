@@ -36,21 +36,20 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 # Path to ChromeDriver relative to the script directory
 driver_path = os.path.join(script_dir, 'chromedriver-win64', 'chromedriver.exe')
 
+# Set executable permissions (Unix-based systems)
+if os.name != 'nt':
+    st = os.stat(driver_path)
+    os.chmod(driver_path, st.st_mode | stat.S_IEXEC)
+
 def setup_selenium():
     options = Options()
-
-    # Randomly select a user agent from the imported list
-    user_agent = random.choice(USER_AGENTS)
-    options.add_argument(f"user-agent={user_agent}")
-
-    # Add other options
-    for option in HEADLESS_OPTIONS:
-        options.add_argument(option)
-
-    # Specify the path to the ChromeDriver
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    
     service = Service(driver_path)
     driver = webdriver.Chrome(service=service, options=options)
-    return driver
+    return 
 
 def click_accept_cookies(driver):
     """
