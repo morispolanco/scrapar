@@ -13,3 +13,4 @@ streamlit-tags
 openpyxl
 groq
 google-generativeai
+webdriver_manager
